@@ -199,6 +199,7 @@ const lightbox_thumbnail = document.querySelectorAll('.lightbox-thumbnail');
 
 // SET IMAGE ON WEBSITE LOAD
 primaryImage.setAttribute('src', "images/"+images[i]);
+primary_thumbnail[i].classList.add('active');
 primaryImage.setAttribute('data-id', i);
 
 // MOBILE PREVIOUS BUTTON
