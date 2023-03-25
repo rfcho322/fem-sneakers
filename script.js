@@ -43,20 +43,28 @@ close_btn.addEventListener('click', (event) => {
 
 // CART BUTTON
 cart_btn.addEventListener('click', (event) => {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const colorGray = rootStyles.getPropertyValue('--clr-neutral-300');
+    const colorBlack = rootStyles.getPropertyValue('--clr-black');
+    const cartIcon = cart_btn.querySelector('svg');
+
     if(card.classList.contains('d-none')) {
         card.classList.remove('d-none');
         card.classList.add('d-block');
         cart_btn.setAttribute("aria-expanded", true);
+        // CHANGE SVG ICON COLOR
+        cartIcon.style.fill = colorBlack;
     } else {
         card.classList.remove('d-block');
         card.classList.add('d-none');
         cart_btn.setAttribute("aria-expanded", false);
+        // CHANGE SVG ICON COLOR
+        cartIcon.style.fill = colorGray;
     }
 });
 
 // DECREASE BUTTON
 minus_btn.addEventListener('click', (event) => {
-    console.log('Minus clicked!');
     let value = parseInt(product_qty.value);
     // LIMIT DECREASE UNTIL ZERO
     if (value > 0) {
@@ -67,7 +75,6 @@ minus_btn.addEventListener('click', (event) => {
 
 // INCREASE BUTTON
 plus_btn.addEventListener('click', (event) => {
-    console.log('Plus clicked!');
     let value = parseInt(product_qty.value);
     value = value + 1;
     product_qty.value = value;
@@ -85,30 +92,27 @@ if (cardBody.childElementCount === 0) {
 }
 
 addToCartBtn.addEventListener('click', () => {
-    let cart_counter = 0;
     const productQty = parseInt(product_qty.value);
     const checkOutButton = cardBody.querySelector('#checkOutBtn');
 
-    for(let item = 0; item < productQty; item++) {
-        cart_counter++;
-        // CART ITEM
-        const addCartItem = document.createElement('div');
-        addCartItem.className = 'cart-item | d-flex align-center justify-between mb-2';
-        addCartItem.innerHTML = `<div class="cart-product-img">
-                                    <img src="images/image-product-1-thumbnail.jpg" alt="product image">
-                                </div>
-                                <div class="cart-product-details">
-                                    <p class="text-secondary">Fall Limited Edition Sneakers</p>
-                                    <p class="text-secondary">$125.00 x 3 <span class="text-dark fw-700">$375.00</span></p>
-                                </div>
-                                <button type="button" class="cart-item__delete-btn">
-                                    <svg width="14" height="16" class="icon-delete">
-                                    <use href="images/icon-delete.svg#icon-delete" alt="delete icon"></use>
-                                    </svg>
-                                </button>`;
+    // CART ITEM
+    const addCartItem = document.createElement('div');
+    addCartItem.className = 'cart-item | d-flex align-center justify-between mb-2';
+    addCartItem.innerHTML = `<div class="cart-product-img">
+                                <img src="images/image-product-1-thumbnail.jpg" alt="product image">
+                            </div>
+                            <div class="cart-product-details">
+                                <p class="text-secondary">Fall Limited Edition Sneakers</p>
+                                <p class="text-secondary">$125.00 x ${productQty} <span class="text-dark fw-700">$375.00</span></p>
+                            </div>
+                            <button type="button" class="cart-item__delete-btn">
+                                <svg width="14" height="16" class="icon-delete">
+                                <use href="images/icon-delete.svg#icon-delete" alt="delete icon"></use>
+                                </svg>
+                            </button>`;
+    // ADD CART ITEM BEFORE CHECK OUT BUTTON
+    cardBody.insertBefore(addCartItem, checkOutButton);
 
-        cardBody.insertBefore(addCartItem, checkOutButton);
-    }
     // UPDATE CART COUNTER
     updateCartCounter();
     deleteCartitem();
@@ -126,7 +130,6 @@ addToCartBtn.addEventListener('click', () => {
         const emptyCart = document.querySelector('.cart-text');
         if (emptyCart) {
             emptyCart.remove();
-            
         }
     }
     
@@ -167,7 +170,9 @@ function deleteCartitem () {
 
 // LIGHT BOX
 const light_box = document.querySelector('.lightbox');
+// PRIMARY IMAGE THUMBNAILS
 const primaryImageThumbnail = document.querySelectorAll('.product-img-thumbnails');
+// IMAGE CONTAINERS
 const primaryImage = document.querySelector('.primary-image');
 const lightboxImage = document.querySelector('.secondary-image');
 // IMAGES ARRAY
@@ -194,6 +199,7 @@ const lightbox_thumbnail = document.querySelectorAll('.lightbox-thumbnail');
 
 // SET IMAGE ON WEBSITE LOAD
 primaryImage.setAttribute('src', "images/"+images[i]);
+primaryImage.setAttribute('data-id', i);
 
 // MOBILE PREVIOUS BUTTON
 previous_btn[0].addEventListener('click', (event) => {
@@ -211,6 +217,7 @@ previous_btn[0].addEventListener('click', (event) => {
     primary_thumbnail[i].classList.add('active');
     // SET THE IMAGE
     primaryImage.setAttribute('src', "images/"+images[i]);
+    primaryImage.setAttribute('data-id', i);
 });
 
 // MOBILE NEXT BUTTON
@@ -229,6 +236,24 @@ next_btn[0].addEventListener('click', (event) => {
     primary_thumbnail[i].classList.add('active');
     // SET THE IMAGE
     primaryImage.setAttribute('src', "images/"+images[i]);
+    primaryImage.setAttribute('data-id', i);
+});
+
+// PRIMARY/LARGE IMAGE CLICK
+primaryImage.addEventListener('click', () => {
+    const currentImage = primaryImage.getAttribute('data-id');
+    // CHECKS IF VIEW PORT IS ABOVE 767px WE CAN DISPLAY LIGHTBOX
+    if(window.innerWidth > 767) {
+        // OPEN LIGHT BOX
+        light_box.classList.remove('d-none');
+        light_box.classList.add('d-flex');
+        // SET THE IMAGES
+        lightboxImage.setAttribute('src', "images/"+images[currentImage]);
+        // SET ACTIVE STATE
+        lightbox_thumbnail[currentImage].classList.add('active');
+        // ARIA
+        light_box.setAttribute("aria-hidden", false);
+    }
 });
 
 
@@ -255,6 +280,7 @@ previous_btn[1].addEventListener('click', (event) => {
     // SET THE IMAGE
     lightboxImage.setAttribute('src', "images/"+images[i]);
     primaryImage.setAttribute('src', "images/"+images[i]);
+    primaryImage.setAttribute('data-id', i);
 });
 
 // LIGHTBOX NEXT BUTTON
@@ -280,24 +306,16 @@ next_btn[1].addEventListener('click', (event) => {
     // SET THE IMAGE
     lightboxImage.setAttribute('src', "images/"+images[i]);
     primaryImage.setAttribute('src', "images/"+images[i]);
+    primaryImage.setAttribute('data-id', i);
 });
 
 // PRIMARY THUMBNAIL IMAGE CLICK, OPEN LIGHT BOX
 primary_thumbnail.forEach((image, value) => {
     image.addEventListener('click', () => {
-        console.log("image " + value);
-        if(light_box.classList.contains('d-none')) {
-            // OPEN LIGHT BOX
-            light_box.classList.remove('d-none');
-            light_box.classList.add('d-flex');
-            // SET THE IMAGES
-            primaryImage.setAttribute('src', "images/"+images[value]);
-            lightboxImage.setAttribute('src', "images/"+images[value]);
-            // SET ACTIVE STATE
-            image.classList.add('active');
-            // ARIA
-            light_box.setAttribute("aria-hidden", false);
-        }
+        // SET ACTIVE STATE
+        primaryImage.setAttribute('src', "images/"+images[value]);
+        primaryImage.setAttribute('data-id', value);
+        image.classList.add('active');
         // CONTROL ACTIVE STATE
         primary_thumbnail.forEach((isActive, isActiveValue) => {
             if(isActiveValue !== value && isActive.classList.contains('active')) {
@@ -316,13 +334,14 @@ primary_thumbnail.forEach((image, value) => {
         });
     });
 });
+
 // LIGHTBOX THUMBNAIL IMAGE CLICK
 lightbox_thumbnail.forEach((image, value) => {
     image.addEventListener('click', () => {
-        console.log("image " + value);
         // SET THE IMAGES
         primaryImage.setAttribute('src', "images/"+images[value]);
         lightboxImage.setAttribute('src', "images/"+images[value]);
+        primaryImage.setAttribute('data-id', value);
 
         // SET ACTIVE STATE
         image.classList.add('active');

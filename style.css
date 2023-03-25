@@ -102,6 +102,9 @@ a:hover svg {
     fill: var(--clr-black);
 }
 
+/* a:focus svg {
+    fill: var(--clr-black);
+} */
 
 /* ADDED STYLING */
 
