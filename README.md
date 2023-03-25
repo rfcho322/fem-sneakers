@@ -46,7 +46,7 @@ Users should be able to:
 
 ### Links
 
-- Frontend Mentor solution URL: [E-commerce Product Page Solution](https://www.frontendmentor.io/solutions/snap-landing-page-semantic-html5-markup-css-and-javascript-01fiSKRlVr)
+- Frontend Mentor solution URL: [E-commerce Product Page Solution](https://www.frontendmentor.io/solutions/ecommerce-product-page-inPRa187Ig)
 - Live Site URL: [E-commerce Product Page Live Website](https://rfcho322.github.io/fem-sneakers/)
 
 ## My process
