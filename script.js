@@ -96,22 +96,24 @@ addToCartBtn.addEventListener('click', () => {
     const checkOutButton = cardBody.querySelector('#checkOutBtn');
 
     // CART ITEM
-    const addCartItem = document.createElement('div');
-    addCartItem.className = 'cart-item | d-flex align-center justify-between mb-2';
-    addCartItem.innerHTML = `<div class="cart-product-img">
-                                <img src="images/image-product-1-thumbnail.jpg" alt="product image">
-                            </div>
-                            <div class="cart-product-details">
-                                <p class="text-secondary">Fall Limited Edition Sneakers</p>
-                                <p class="text-secondary">$125.00 x ${productQty} <span class="text-dark fw-700">$375.00</span></p>
-                            </div>
-                            <button type="button" class="cart-item__delete-btn">
-                                <svg width="14" height="16" class="icon-delete">
-                                <use href="images/icon-delete.svg#icon-delete" alt="delete icon"></use>
-                                </svg>
-                            </button>`;
-    // ADD CART ITEM BEFORE CHECK OUT BUTTON
-    cardBody.insertBefore(addCartItem, checkOutButton);
+    if(productQty > 1) {
+        const addCartItem = document.createElement('div');
+        addCartItem.className = 'cart-item | d-flex align-center justify-between mb-2';
+        addCartItem.innerHTML = `<div class="cart-product-img">
+                                    <img src="images/image-product-1-thumbnail.jpg" alt="product image">
+                                </div>
+                                <div class="cart-product-details">
+                                    <p class="text-secondary">Fall Limited Edition Sneakers</p>
+                                    <p class="text-secondary">$125.00 x ${productQty} <span class="text-dark fw-700">$375.00</span></p>
+                                </div>
+                                <button type="button" class="cart-item__delete-btn">
+                                    <svg width="14" height="16" class="icon-delete">
+                                    <use href="images/icon-delete.svg#icon-delete" alt="delete icon"></use>
+                                    </svg>
+                                </button>`;
+        // ADD CART ITEM BEFORE CHECK OUT BUTTON
+        cardBody.insertBefore(addCartItem, checkOutButton);
+    }
 
     // UPDATE CART COUNTER
     updateCartCounter();
