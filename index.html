@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta property="og:image" content="images/ss-desktop.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | E-commerce product page</title>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- HEADER -->
+    <header class="header">
+      <!-- TOP NAVIGATION -->
+      <nav class="topbar-nav d-flex">
+        <div class="topbar-nav-col-1 d-flex align-center">
+          <a href="#" class="menu-btn" role="button" aria-label="open sidebar" aria-haspopup="true" aria-expanded="false" aria-controls="sidebar-nav">
+            <svg width="16" height="15">
+              <use href="images/icon-menu.svg#icon-menu" alt="menu icon"></use>
+            </svg>
+          </a>
+          <a href="index.html" class="brand" aria-label="go to homepage">
+            <img src="images/logo.svg" alt="brand logo">
+          </a>
+          <ul class="nav-list d-none" id="topNavList" role="menu" aria-hidden="true">
+            <li class="nav-item">
+              <a href="#" role="menuitem">
+                Collections
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a href="#" role="menuitem">
+                Men
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a href="#" role="menuitem">
+                Women
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a href="#" role="menuitem">
+                About
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a href="#" role="menuitem">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="topbar-nav-col-2 d-flex align-center ml-auto">
+          <a href="#" class="cart-btn" id="cartBtn" role="button" aria-haspopup="dialog" aria-expanded="false">
+            <span class="cart-item-counter">0</span>
+            <svg width="22" height="20">
+              <use href="images/icon-cart.svg#icon-cart" alt="cart icon"></use>
+            </svg>
+          </a>
+          <a href="#" class="avatar" aria-label="avatar">
+            <img src="images/image-avatar.png" class="avatar-rounded" alt="avatar">
+          </a>
+        </div>
+      </nav>
+      <!-- SIDEBAR NAVIGATION -->
+      <nav class="sidebar-nav | d-none" id="sidebar-nav" role="menu">
+        <div class="sidebar-nav__container">
+          <a href="#" class="close-btn" role="button" aria-label="close sidebar">
+            <svg width="14" height="15">
+              <use href="images/icon-close.svg#icon-close" alt="close icon"></use>
+            </svg>
+          </a>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#" role="menuitem">
+                Collections
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a href="#" role="menuitem">
+                Men
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a href="#" role="menuitem">
+                Women
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a href="#" role="menuitem">
+                About
+              </a>
+            </li>
+            <li class="nav-item" role="menuitem">
+              <a href="#" role="menuitem">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- CART ITEMS  -->
+      <div class="card | d-none" role="dialog" aria-modal="true" aria-labelledby="cartBtn">
+        <div class="card-header">
+          <h1>Cart</h1>
+        </div>
+        <div class="card-body">
+          <!-- <p class="cart-text text-secondary fw-700">Your cart is empty.</p> -->
+          <!-- <div class="cart-item | d-flex align-center justify-between mb-3">
+            <div class="cart-product-img">
+              <img src="images/image-product-1-thumbnail.jpg" alt="product image">
+            </div>
+            <div class="cart-product-details">
+              <p class="text-secondary">Fall Limited Edition Sneakers</p>
+              <p class="text-secondary">$125.00 x 3 <span class="text-dark fw-700">$375.00</span></p>
+            </div>
+            <button type="button" class="cart-item__delete-btn">
+              <svg width="14" height="16" class="icon-delete">
+                <use href="images/icon-delete.svg#icon-delete" alt="delete icon"></use>
+              </svg>
+            </button>
+          </div>
+          <button type="button" class="btn | btn-primary btn-block" id="checkOutBtn">
+            Checkout
+          </button> -->
+        </div>
+      </div>
+    </header>
+    
+    <!-- MAIN -->
+    <main class="main">
+      <div class="product-img-container">
+        <button type="button" class="previous-btn" aria-label="previous image" aria-controls="product-image">
+          <svg width="12" height="18">
+            <use href="images/icon-previous.svg#icon-previous" alt="previous icon"></use>
+          </svg>
+        </button>
+        <!-- UNCOMMENT THE BELOW CODE IF YOU WANT TO REVERT BACK TO DESIGN STATE -->
+        <!-- <img src="images/image-product-1.jpg" class="product-img primary-image" alt="product image"> -->
+        <img class="product-img primary-image" id="product-image" alt="product image">
+        <button type="button" class="next-btn" aria-label="next image" aria-controls="product-image">
+          <svg width="12" height="18">
+            <use href="images/icon-next.svg#icon-next" alt="next icon"></use>
+          </svg>
+        </button>
+        <div class="product-img-thumbnails | d-none">
+          <!-- UNCOMMENT THIS TO CHECK OUT HOW IT WOULD LOOK LIKE -->
+          <!-- <div class="thumbnail primary-thumbnail |">
+            <img src="images/image-product-1-thumbnail.jpg" class="product-img" alt="product image thumbnail">
+          </div>
+          <div class="thumbnail primary-thumbnail |">
+            <img src="images/image-product-2-thumbnail.jpg" class="product-img" alt="product image thumbnail">
+          </div>
+          <div class="thumbnail primary-thumbnail |">
+            <img src="images/image-product-3-thumbnail.jpg" class="product-img" alt="product image thumbnail">
+          </div>
+          <div class="thumbnail primary-thumbnail |">
+            <img src="images/image-product-4-thumbnail.jpg" class="product-img" alt="product image thumbnail">
+          </div> -->
+        </div>
+      </div>
+      <div class="product-details">
+        <p class="product-brand | text-primary">Sneaker Company</p>
+        <h1 class="product-name">Fall Limited Edition Sneakers</h1>
+        <p class="product-description | text-secondary">These low-profile sneakers are your perfect casual wear companion. Featuring a 
+          durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
+        <div class="product-pricing | d-flex">
+          <h4 class="price">$125.00</h4>
+          <span class="price-discount | text-primary">50%</span>
+          <span class="price-original | text-muted ml-auto">$250.00</span>
+        </div>
+        <div class="product-action-wrapper">
+          <div class="product-quantity-selector">
+            <button type="button" class="product-quantity-selector_minus-btn">
+              <svg width="12" height="4" class="icon-minus">
+                <use href="images/icon-minus.svg#icon-minus" alt="minus icon"></use>
+              </svg>
+            </button>
+            <input type="text" class="product-qty" value="0">
+            <button type="button" class="product-quantity-selector_plus-btn">
+              <svg width="12" height="12" class="icon-plus">
+                <use href="images/icon-plus.svg#icon-plus" alt="plus icon"></use>
+              </svg>
+            </button>
+          </div>
+          <button type="button" class="btn | btn-primary btn-block" id="addToCartBtn">
+            <svg width="22" height="20">
+              <use href="images/icon-cart.svg#icon-cart" alt="cart icon"></use>
+            </svg>
+            Add to cart
+          </button>
+        </div>
+      </div>
+
+      <!-- LIGHT BOX -->
+      <div class="lightbox | d-none" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="product-img-container">
+          <a href="#" class="close-btn" id="lightBoxCloseBtn" role="button" aria-label="close lightbox">
+            <svg width="14" height="15">
+              <use href="images/icon-close.svg#icon-close" alt="close icon"></use>
+            </svg>
+          </a>
+          <button type="button" class="previous-btn" aria-label="previous image" aria-controls="lightboxProductImage">
+            <svg width="12" height="18">
+              <use href="images/icon-previous.svg#icon-previous" alt="previous icon"></use>
+            </svg>
+          </button>
+           <!-- UNCOMMENT THE BELOW CODE IF YOU WANT TO REVERT BACK TO DESIGN STATE -->
+           <!-- <img src="images/image-product-1.jpg" class="product-img secondary-image" alt="product image"> -->
+          <img class="product-img secondary-image" id="lightboxProductImage" alt="product image">
+          <button type="button" class="next-btn" aria-label="next image" aria-controls="lightboxProductImage">
+            <svg width="13" height="18">
+              <use href="images/icon-next.svg#icon-next" alt="next icon"></use>
+            </svg>
+          </button>
+          <div class="product-img-thumbnails | ">
+            <!-- <div class="thumbnail lightbox-thumbnail | ">
+              <img src="images/image-product-1-thumbnail.jpg" class="product-img" alt="product image thumbnail">
+            </div>
+            <div class="thumbnail lightbox-thumbnail | ">
+              <img src="images/image-product-2-thumbnail.jpg" class="product-img" alt="product image thumbnail">
+            </div>
+            <div class="thumbnail lightbox-thumbnail | ">
+              <img src="images/image-product-3-thumbnail.jpg" class="product-img" alt="product image thumbnail">
+            </div>
+            <div class="thumbnail lightbox-thumbnail | ">
+              <img src="images/image-product-4-thumbnail.jpg" class="product-img" alt="product image thumbnail">
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+      Challenge by <a href="https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="https://github.com/rfcho322/fem-sneakers" target="_blank">rfcho322</a>.
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
