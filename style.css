@@ -440,7 +440,7 @@ a:hover svg {
 .product-quantity-selector input {
     padding-block: 5px;
     background-color: transparent;
-    font-size: var(--clr-black);
+    font-size: var(--fs-100);
     font-weight: 700;
     text-align: center;
     outline: 0;
