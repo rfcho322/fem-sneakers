@@ -403,6 +403,11 @@ a:hover svg {
     align-items: center;
 }
 
+.price {
+    font-size: var(--fs-400);
+    font-weight: 700;
+}
+
 .price-discount {
     background-color: var(--clr-primary-200);
     border-radius: 4px;
