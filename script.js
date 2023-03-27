@@ -12,6 +12,7 @@ const plus_btn = document.querySelector('.product-quantity-selector_plus-btn');
 const product_qty = document.querySelector('.product-qty');
 const addToCartBtn = document.querySelector('#addToCartBtn');
 const lightBoxCloseBtn = document.querySelector('#lightBoxCloseBtn');
+const light_box = document.querySelector('.lightbox');
 
 checkViewPort();
 window.addEventListener('resize', checkViewPort);
@@ -20,10 +21,48 @@ window.addEventListener('resize', checkViewPort);
 function checkViewPort () {
     if (window.innerWidth > 1024) {
         topNavList.removeAttribute('aria-hidden');
+        if(light_box.classList.contains('d-flex')) {
+            light_box.classList.add('d-none');
+            light_box.classList.remove('d-flex');
+            // ARIA
+            light_box.setAttribute("aria-hidden", true);
+        }
     } else {
         topNavList.setAttribute('aria-hidden', true);
     }
 }
+
+// OUTSIDE CLICK, CLOSE IT
+document.addEventListener('click', (event) => {
+    // SIDEBAR
+    if(event.target == sidebar_nav && !menu_btn.contains(event.target)) {
+        sidebar_nav.classList.remove('d-block');
+        sidebar_nav.classList.add('d-none');
+        // ARIA    
+        menu_btn.setAttribute("aria-expanded", false);
+    }
+    // CART CARD DROPDOWN
+    if(!card.contains(event.target) && !cart_btn.contains(event.target)) {
+        const rootStyles = getComputedStyle(document.documentElement);
+        const colorGray = rootStyles.getPropertyValue('--clr-neutral-300');
+        const cartIcon = cart_btn.querySelector('svg');
+        card.classList.remove('d-block');
+        card.classList.add('d-none');
+        // ARIA
+        cart_btn.setAttribute("aria-expanded", false);
+        // CHANGE SVG ICON COLOR
+        cartIcon.style.fill = colorGray;
+    }
+    // LIGHTBOX
+    if (event.target === light_box) {
+        if(light_box.classList.contains('d-flex')) {
+            light_box.classList.add('d-none');
+            light_box.classList.remove('d-flex');
+            // ARIA
+            light_box.setAttribute("aria-hidden", true);
+        }
+    }
+});
 
 // MENU BUTTON
 menu_btn.addEventListener('click', (event) => {
@@ -104,7 +143,7 @@ addToCartBtn.addEventListener('click', () => {
                                 </div>
                                 <div class="cart-product-details">
                                     <p class="text-secondary">Fall Limited Edition Sneakers</p>
-                                    <p class="text-secondary">$125.00 x ${productQty} <span class="text-dark fw-700">$375.00</span></p>
+                                    <p class="text-secondary">$125.00 x ${productQty} <span class="text-dark fw-700">$${productQty * 125}</span></p>
                                 </div>
                                 <button type="button" class="cart-item__delete-btn">
                                     <svg width="14" height="16" class="icon-delete">
@@ -171,7 +210,6 @@ function deleteCartitem () {
 
 
 // LIGHT BOX
-const light_box = document.querySelector('.lightbox');
 // PRIMARY IMAGE THUMBNAILS
 const primaryImageThumbnail = document.querySelectorAll('.product-img-thumbnails');
 // IMAGE CONTAINERS
@@ -211,6 +249,11 @@ previous_btn[0].addEventListener('click', (event) => {
     }
     i--;
     // TOGGLE ACTIVE STATE
+    lightbox_thumbnail.forEach((image, value) => {
+        if(image.classList.contains('active')) {
+            image.classList.remove('active');
+        }
+    });
     primary_thumbnail.forEach((image, value) => {
         if(image.classList.contains('active')) {
             image.classList.remove('active');
@@ -230,6 +273,11 @@ next_btn[0].addEventListener('click', (event) => {
     }
     i++;
     // TOGGLE ACTIVE STATE
+    lightbox_thumbnail.forEach((image, value) => {
+        if(image.classList.contains('active')) {
+            image.classList.remove('active');
+        }
+    });
     primary_thumbnail.forEach((image, value) => {
         if(image.classList.contains('active')) {
             image.classList.remove('active');

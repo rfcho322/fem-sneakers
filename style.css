@@ -182,7 +182,8 @@ a:hover svg {
 
 .card {
     position: absolute;
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    top: 65px;
     left: 50%;
     border-radius: 10px;
     transform: translate(-50%);
@@ -195,6 +196,7 @@ a:hover svg {
 @media (min-width: 426px) {
     .card {
         left: auto;
+        top: 75px;
         right: 1rem;
         transform: none;
     }
@@ -203,8 +205,18 @@ a:hover svg {
 @media (min-width: 768px) {
     .card {
         left: auto;
+        right: 1rem;
+        transform: none;
+        top: 75px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .card {
+        left: auto;
         right: 8rem;
         transform: none;
+        top: 75px;
     }
 }
 

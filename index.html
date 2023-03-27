@@ -17,8 +17,8 @@
     <!-- HEADER -->
     <header class="header">
       <!-- TOP NAVIGATION -->
-      <nav class="topbar-nav d-flex">
-        <div class="topbar-nav-col-1 d-flex align-center">
+      <nav class="topbar-nav | d-flex">
+        <div class="topbar-nav-col-1 | d-flex align-center">
           <a href="#" class="menu-btn" role="button" aria-label="open sidebar" aria-haspopup="true" aria-expanded="false" aria-controls="sidebar-nav">
             <svg width="16" height="15">
               <use href="images/icon-menu.svg#icon-menu"></use>
@@ -55,7 +55,7 @@
             </li>
           </ul>
         </div>
-        <div class="topbar-nav-col-2 d-flex align-center ml-auto">
+        <div class="topbar-nav-col-2 | d-flex align-center ml-auto">
           <a href="#" class="cart-btn" id="cartBtn" role="button" aria-label="open cart" aria-haspopup="dialog" aria-expanded="false">
             <span class="cart-item-counter">0</span>
             <svg width="22" height="20">
@@ -105,7 +105,7 @@
         </div>
       </nav>
       <!-- CART ITEMS  -->
-      <div class="card | d-none" role="dialog" aria-modal="true" aria-labelledby="cartBtn">
+      <div class="card | d-none" role="dialog" id="card" aria-modal="true" aria-labelledby="cartBtn">
         <div class="card-header">
           <h1>Cart</h1>
         </div>
@@ -117,7 +117,7 @@
             </div>
             <div class="cart-product-details">
               <p class="text-secondary">Fall Limited Edition Sneakers</p>
-              <p class="text-secondary">$125.00 x <span id="productQty">3</span> <span class="text-dark fw-700">$375.00</span></p>
+              <p class="text-secondary">$125.00 x 3 <span class="text-dark fw-700">$375.00</span></p>
             </div>
             <button type="button" class="cart-item__delete-btn">
               <svg width="14" height="16" class="icon-delete">
