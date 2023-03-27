@@ -20,6 +20,7 @@ window.addEventListener('resize', checkViewPort);
 // CHECK WHETHER THE VIEW PORT HITS A CERTAIN SIZE THEN TOGGLE aria-hidden
 function checkViewPort () {
     if (window.innerWidth > 1024) {
+        // REMOVE aria-hidden ON TOPBAR NAVIGATION
         topNavList.removeAttribute('aria-hidden');
         if(light_box.classList.contains('d-flex')) {
             light_box.classList.add('d-none');
@@ -27,6 +28,11 @@ function checkViewPort () {
             // ARIA
             light_box.setAttribute("aria-hidden", true);
         }
+        // HIDE SIDEBAR ON 1024px
+        sidebar_nav.classList.remove('d-block');
+        sidebar_nav.classList.add('d-none');
+        // ARIA    
+        menu_btn.setAttribute("aria-expanded", false);
     } else {
         topNavList.setAttribute('aria-hidden', true);
     }
