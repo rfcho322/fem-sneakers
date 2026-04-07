@@ -151,10 +151,8 @@ addToCartBtn.addEventListener('click', () => {
                                     <p class="text-secondary">Fall Limited Edition Sneakers</p>
                                     <p class="text-secondary">$125.00 x ${productQty} <span class="text-dark fw-700">$${productQty * 125}</span></p>
                                 </div>
-                                <button type="button" class="cart-item__delete-btn">
-                                    <svg width="14" height="16" class="icon-delete">
-                                    <use href="images/icon-delete.svg#icon-delete" alt="delete icon"></use>
-                                    </svg>
+                                <button type="button" class="cart-item__delete-btn" aria-label="remove item">
+                                    <span class="delete-icon" aria-hidden="true"></span>
                                 </button>`;
         // ADD CART ITEM BEFORE CHECK OUT BUTTON
         cardBody.insertBefore(addCartItem, checkOutButton);
